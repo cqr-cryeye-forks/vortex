@@ -12,10 +12,10 @@ import urllib3
 
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
-
 # Third party Python libraries.
 import googlesearch  # noqa
 import requests  # noqa
+
 
 # Custom Python libraries.
 
@@ -121,13 +121,14 @@ class theHarvester:
         print("[*] (PASSIVE) Searching for emails NOT within the domain's site: {}".format(query))
 
         for url in googlesearch.search(
-            query,
-            start=0,
-            stop=self.search_max,
-            num=self.num_max,
-            pause=self.delay,
-            extra_params={"filter": "0"},
-            tbs="li:1",  # Verbatim mode.  Doesn't return suggested results with other domains.
+                query,
+                start=0,
+                stop=self.search_max,
+                num=self.num_max,
+                pause=self.delay,
+                extra_params={"filter": "0"},
+                user_agent=googlesearch.get_random_user_agent(),
+                tbs="li:1",  # Verbatim mode.  Doesn't return suggested results with other domains.
         ):
             self.queue.put(url)
 
@@ -137,13 +138,13 @@ class theHarvester:
 
             print("[*] (ACTIVE) Searching for emails within the domain's sites: {}".format(self.domain))
             for url in googlesearch.search(
-                query,
-                start=0,
-                stop=self.search_max,
-                num=self.num_max,
-                pause=self.delay,
-                extra_params={"filter": "0"},
-                tbs="li:1",  # Verbatim mode.  Doesn't return suggested results with other domains.
+                    query,
+                    start=0,
+                    stop=self.search_max,
+                    num=self.num_max,
+                    pause=self.delay,
+                    extra_params={"filter": "0"},
+                    tbs="li:1",  # Verbatim mode.  Doesn't return suggested results with other domains.
             ):
                 self.queue.put(url)
 

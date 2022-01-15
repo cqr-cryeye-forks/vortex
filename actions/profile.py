@@ -1,18 +1,10 @@
 import time
 
-from colorama import Fore
-
 from actions.action import Action
 from db.dao.profile import ProfileDao
 from db.dao.user import UserDao
-from db.handler import DBHandler
-from db.models.leak import Leak
-from db.models.user import User
-from scripts.blues import LinkedIn
 from scripts.profiler import Profiler
-from scripts.pwndb import PwnDB
-from utils.namemash import NameMasher
-from utils.utils import colors, progress, info, warning
+from utils.utils import progress, info, warning
 
 
 class Profile(Action):
