@@ -24,18 +24,18 @@ class NameMasher:
             "{0}",
             "{1}"
         ]
-        print("[+] Select a format for usernames")
-        for i, c in enumerate(combinations, start=0):
-            print(f"  {i}: " + c.format(first, last))
-
-        while not 0 <= choice <= len(combinations) - 1:
-            try:
-                choice = int(input("  $> "))
-            except KeyboardInterrupt:
-                exit(1)
-            except ValueError:
-                continue
-        self.fmt = combinations[choice]
+        # print("[+] Select a format for usernames")
+        # for i, c in enumerate(combinations, start=0):
+        #     print(f"  {i}: " + c.format(first, last))
+        #
+        # while not 0 <= choice <= len(combinations) - 1:
+        #     try:
+        #         choice = int(input("  $> "))
+        #     except KeyboardInterrupt:
+        #         exit(1)
+        #     except ValueError:
+        #         continue
+        self.fmt = combinations[0]
 
     def mash(self, first_name, last_name):
         first_name = ''.join([c for c in first_name if c == " " or c.isalpha()])
