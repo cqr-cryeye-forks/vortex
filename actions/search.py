@@ -34,10 +34,10 @@ class Search(Action):
             info("Please enter a target domain")
             domain = self.wait_for_input()
 
-        if command in ["linkedin", "crosslinked"] and company is None:
+        if command in ["linkedin", "crosslinked", "all"] and company is None:
             error("Company name field is required")
             info("Please specify the company to search on LinkedIn")
-            company = self.wait_for_input()
+            company = " ".join(domain.split(".")).title()
 
         # dao = UserDao(handler=self.dbh)
         output = []
